@@ -12,9 +12,13 @@ case class GameSnapshot(points: Int, team2Scored: Boolean, team1Total: Int, team
     s"At $elapsedTimeString, $teamString scored $points. Team 1: $team1Total, Team 2: $team2Total"
   }
 
+  def team1Scored: Boolean = !team2Scored
+
   def isValid: Boolean = {
     points >= 1 && points <= 3 && team2Total >= 0 && team1Total >= 0 && elapsedTime >= 0
   }
+
+  def hasZeroPoints: Boolean = points == 0
 
   override def compare(that: GameSnapshot): Int = {
     this.elapsedTime - that.elapsedTime
