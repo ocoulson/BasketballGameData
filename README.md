@@ -4,9 +4,6 @@ Assumptions / Decisions
 - In the interests of brevity, I have decided to consider the timestamp to be correct, so will always try to insert a data point
 where its timestamp suggests and use this to determine the previous datapoint, which I can use to make corrections if necessary
 
-- The spec mentions that processing needs to occur quickly, so data can be sent on as quickly as possible, so I haven't chosen
-a data structure with quicker access
-
 - Without specific instructions on how to handle the various edge cases, I have applied the following logic:
     - event can't be decoded correctly - discard
     - event has timestamp before last event - Insert in correct place
@@ -18,8 +15,10 @@ a data structure with quicker access
 ##### Extensions
 Given more time, I would improve on the following:
 
-- Avoid using the less Functional Programming structures (vars containing lists which I change) to hold the state of the game. 
-It was the simplest thing I could think of at the time.
+- Refactor to stop using mutable state to store the values as they come in, replacing the mutable fields with immutable parameters to
+be passed around the recursive functions.
+
+- Use a data structure that has better performance for insertion than the list
  
 - Use ScalaCheck test library to write a test battery using randomised data to test both a wide variety of possible individual hex inputs and also a variety of sequences of inputs
 
