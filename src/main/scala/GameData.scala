@@ -1,7 +1,7 @@
 
 object GameData {
 
-  private val data1 = List(
+  val data1 = List(
     "0x801002",
     "0xf81016",
     "0x1d8102f",
@@ -31,7 +31,7 @@ object GameData {
     "0x1228c8ea",
     "0x12b0d8ea")
 
-  private val data2 = List(
+  val data2 = List(
     "0x781002",
     "0xe01016",
     "0x1081014",
