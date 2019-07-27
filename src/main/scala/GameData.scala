@@ -1,5 +1,5 @@
 
-object DataStreamer {
+object GameData {
 
   private val data1 = List(
     "0x801002",

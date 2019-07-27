@@ -8,6 +8,10 @@ case class GameSnapshot(points: Int, team2Scored: Boolean, team1Total: Int, team
     val teamString = if(team2Scored) "Team 2" else "Team 1"
     s"At $elapsedTimeString, $teamString scored $points. Team 1: $team1Total, Team 2: $team2Total"
   }
+
+  def isValid: Boolean = {
+    points >= 1 && points < 4 && team2Total >= 0 && team1Total >= 0 && elapsedTime >= 0
+  }
 }
 
 object GameSnapshot {

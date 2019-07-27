@@ -23,5 +23,25 @@ class GameSnapshotSpec extends FunSpec with Matchers{
 
       GameSnapshot(point3) shouldEqual Some(expected3)
     }
+
+    describe("is not valid if") {
+      it("points are not between 1 and 3") {
+        GameSnapshot(0, team2Scored = false, 12, 12, 1000).isValid shouldEqual false
+        GameSnapshot(-1, team2Scored = false, 12, 12, 1000).isValid shouldEqual false
+        GameSnapshot(5, team2Scored = false, 12, 12, 1000).isValid shouldEqual false
+        GameSnapshot(100, team2Scored = false, 12, 12, 1000).isValid shouldEqual false
+        GameSnapshot(-100, team2Scored = false, 12, 12, 1000).isValid shouldEqual false
+      }
+
+      it("team1Total or team2Total are less than 0") {
+        GameSnapshot(1, team2Scored = true, -12, 12, 1000).isValid shouldEqual false
+        GameSnapshot(2, team2Scored = true, 12, -12, 1000).isValid shouldEqual false
+      }
+
+      it("elapsedTime is less than 0") {
+        GameSnapshot(1, team2Scored = true, 12, 12, -1).isValid shouldEqual false
+        GameSnapshot(2, team2Scored = true, 12, 12, -1000).isValid shouldEqual false
+      }
+    }
   }
 }
