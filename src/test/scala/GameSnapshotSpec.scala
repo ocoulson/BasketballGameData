@@ -56,4 +56,20 @@ class GameSnapshotSpec extends FunSpec with Matchers{
       }
     }
   }
+
+  describe("ToHexString") {
+    it("should correctly encode a GameSnapshot") {
+
+      val expected: String = "0x1310c8a1"
+      val snapShot: GameSnapshot = GameSnapshot(1, team2Scored = false, 25, 20, 610)
+
+      snapShot.toHexString shouldEqual Some(expected)
+
+      val expected2: String = "0x29f981a2"
+
+      val snapshot2 = GameSnapshot(2, team2Scored = false, 48, 52, 1343)
+
+      snapshot2.toHexString shouldEqual Some(expected2)
+    }
+  }
 }

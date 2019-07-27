@@ -4,12 +4,13 @@
  - There are some that will be inherently invalid (e.g. Score of 0) meaning the datapoint must be discarded or possibly amended based on other datapoints.
  - Alternatively, there are some that are invalid based on the fact that they don't fit with other received events (e.g. a duplicate or one whose timestamp is far ahead of the next few subsequent events), these must also be handled separately
  
+Assumptions / Decisions
+- I have decided to consider the timestamp to be 
  
 Invalid data edge cases
-- Received event is duplicate of last event
+- Received event has timestamp before last event
 - Received event is duplicate of some already received event
 - Received event is invalid: 0 points scored - no change to totals  
-- Received event has timestamp before last event
 - Received event has values such that it cannot be immediately following the previous event (i.e. jump in points of > 3 for either or both teams)
 - Received event is invalid: 0 points scored - totals have changed such that the jump from the last point was impossible (i.e. +4)
 - Received event is invalid: 0 points scored - totals have changed in a possible way

@@ -19,6 +19,17 @@ case class GameSnapshot(points: Int, team2Scored: Boolean, team1Total: Int, team
   override def compare(that: GameSnapshot): Int = {
     this.elapsedTime - that.elapsedTime
   }
+
+  def toHexString: Option[String] = {
+    val timeString = BitVector.fromInt(elapsedTime, 12).toBin
+    val team1TotalString = BitVector.fromInt(team1Total, 8).toBin
+    val team2TotalString = BitVector.fromInt(team2Total, 8).toBin
+    val pointsString = BitVector.fromInt(points, 2).toBin
+    val team2ScoredBit = if (team2Scored) '1' else '0'
+
+    val initialCombined = timeString + team1TotalString + team2TotalString + team2ScoredBit + pointsString
+    ByteVector.fromBin(initialCombined).map("0x" + _.toHex)
+  }
 }
 
 object GameSnapshot {

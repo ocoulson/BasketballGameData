@@ -1,7 +1,6 @@
+object TestGameData {
 
-object GameData {
-
-  val data1 = List(
+  val goodData = List(
     "0x801002",
     "0xf81016",
     "0x1d8102f",
@@ -31,7 +30,7 @@ object GameData {
     "0x1228c8ea",
     "0x12b0d8ea")
 
-  val data2 = List(
+  val inconsistentData = List(
     "0x781002",
     "0xe01016",
     "0x1081014",

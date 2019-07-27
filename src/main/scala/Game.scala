@@ -1,7 +1,6 @@
-import org.scalactic.Snapshots
 
 class Game {
-  var gameSnapshots: List[GameSnapshot] = List()
+  private var gameSnapshots: List[GameSnapshot] = List()
 
   def lastEvent: Option[GameSnapshot] = gameSnapshots.headOption
 
@@ -9,7 +8,7 @@ class Game {
 
   def allEvents: List[GameSnapshot] = gameSnapshots
 
-  def addSnapshot(inputString: String): Unit = {
+  def addEvent(inputString: String): Unit = {
     GameSnapshot(inputString) match {
       case None => println("Invalid input, could not parse")
       case Some(snapshot) =>
@@ -17,11 +16,12 @@ class Game {
     }
   }
 
-  def addSnapshotInOrder(gameSnapshot: GameSnapshot, snapshots: List[GameSnapshot]): List[GameSnapshot] = {
+  private def addSnapshotInOrder(gameSnapshot: GameSnapshot, snapshots: List[GameSnapshot]): List[GameSnapshot] = {
     snapshots match {
       case Nil => List(gameSnapshot)
       case head::tail =>
-        if (gameSnapshot.compare(head) > 0) gameSnapshot :: head :: tail
+        if (gameSnapshot == head) head::tail
+        else if (gameSnapshot.compare(head) > 0) gameSnapshot :: head :: tail
         else head :: addSnapshotInOrder(gameSnapshot, tail)
     }
   }
