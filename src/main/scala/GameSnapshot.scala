@@ -1,7 +1,7 @@
 import scodec.bits._
 
 case class GameSnapshot(points: Int, team2Scored: Boolean, team1Total: Int, team2Total: Int, elapsedTime: Int) extends Ordered[GameSnapshot] {
-  override def toString: String = {
+  def prettyPrint: String = {
     val elapsedMins = Math.floor(elapsedTime / 60)
     val elapsedSeconds = {
       val seconds = elapsedTime % 60
